@@ -1,0 +1,14 @@
+# Build output / intermediates
+obj/
+bin/
+*.dll
+*.pdb
+
+# IDE
+.vs/
+*.user
+*.suo
+
+# OS junk
+Thumbs.db
+.DS_Store

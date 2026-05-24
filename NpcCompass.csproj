@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>NpcCompass</AssemblyName>
+    <RootNamespace>NpcCompass</RootNamespace>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>..\..\BepInEx\plugins\NpcCompass\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx.Core" HintPath="..\..\BepInEx\core\BepInEx.Core.dll" Private="false" />
+    <Reference Include="BepInEx.Unity.Common" HintPath="..\..\BepInEx\core\BepInEx.Unity.Common.dll" Private="false" />
+    <Reference Include="BepInEx.Unity.IL2CPP" HintPath="..\..\BepInEx\core\BepInEx.Unity.IL2CPP.dll" Private="false" />
+    <Reference Include="Il2CppInterop.Common" HintPath="..\..\BepInEx\core\Il2CppInterop.Common.dll" Private="false" />
+    <Reference Include="Il2CppInterop.Runtime" HintPath="..\..\BepInEx\core\Il2CppInterop.Runtime.dll" Private="false" />
+    <Reference Include="Assembly-CSharp" HintPath="..\..\BepInEx\interop\Assembly-CSharp.dll" Private="false" />
+    <Reference Include="Il2Cppmscorlib" HintPath="..\..\BepInEx\interop\Il2Cppmscorlib.dll" Private="false" />
+    <Reference Include="Il2CppSystem" HintPath="..\..\BepInEx\interop\Il2CppSystem.dll" Private="false" />
+    <Reference Include="Il2CppSystem.Core" HintPath="..\..\BepInEx\interop\Il2CppSystem.Core.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="..\..\BepInEx\interop\UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="..\..\BepInEx\interop\UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="UnityEngine.AnimationModule" HintPath="..\..\BepInEx\interop\UnityEngine.AnimationModule.dll" Private="false" />
+    <Reference Include="UnityEngine.InputLegacyModule" HintPath="..\..\BepInEx\interop\UnityEngine.InputLegacyModule.dll" Private="false" />
+    <Reference Include="UnityEngine.IMGUIModule" HintPath="..\..\BepInEx\interop\UnityEngine.IMGUIModule.dll" Private="false" />
+  </ItemGroup>
+</Project>
