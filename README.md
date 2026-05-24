@@ -4,6 +4,8 @@
 
 A BepInEx plugin that overlays a circular compass on the game screen, showing real-time positions and orientations of NPCs in the current scene.
 
+![Demo](demo.png)
+
 ## Features
 
 - Circular compass anchored to the right edge of the screen
