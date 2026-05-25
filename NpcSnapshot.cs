@@ -24,12 +24,14 @@ public struct NpcSnapshot
     public Vector3 Position;
     public Vector3 Forward;
     public NpcFixedType FixedType;
+    public float Strangeness;
 
-    public NpcSnapshot(int id, Vector3 position, Vector3 forward, NpcFixedType fixedType)
+    public NpcSnapshot(int id, Vector3 position, Vector3 forward, NpcFixedType fixedType, float strangeness)
     {
         Id = id;
         Position = position;
         Forward = forward;
         FixedType = fixedType;
+        Strangeness = strangeness;
     }
 }

@@ -127,7 +127,8 @@ internal static class NpcScanner
             }
 
             NpcFixedType fixedType = ReadFixedType(npc);
-            snapshot = new NpcSnapshot(npc.id, t.position, t.forward, fixedType);
+            float strangeness = ReadStrangeness(npc);
+            snapshot = new NpcSnapshot(npc.id, t.position, t.forward, fixedType, strangeness);
             return true;
         }
         catch
@@ -160,6 +161,23 @@ internal static class NpcScanner
         }
     }
 
+    private static float ReadStrangeness(NpcController npc)
+    {
+        try
+        {
+            float v = npc.StrangenessValue;
+            if (!float.IsFinite(v))
+            {
+                return 0f;
+            }
+            return Mathf.Clamp01(v);
+        }
+        catch
+        {
+            return 0f;
+        }
+    }
+
     private static void MaybeLogSummary(int count)
     {
         if (Time.unscaledTime - lastSummaryLogTime < Mathf.Max(1f, Plugin.SummaryLogIntervalSeconds.Value))
@@ -177,20 +195,28 @@ internal static class NpcScanner
 
         int pinponCount = 0;
         int conbiniCount = 0;
+        float strangenessMax = 0f;
+        float strangenessSum = 0f;
         for (int i = 0; i < snapshots.Count; i++)
         {
             NpcFixedType t = snapshots[i].FixedType;
             if (t == NpcFixedType.Pinpon) pinponCount++;
             else if (t == NpcFixedType.Conbini) conbiniCount++;
+
+            float st = snapshots[i].Strangeness;
+            strangenessSum += st;
+            if (st > strangenessMax) strangenessMax = st;
         }
         int otherCount = count - pinponCount - conbiniCount;
+        float strangenessAvg = strangenessSum / snapshots.Count;
 
         NpcSnapshot s = snapshots[0];
         Plugin.Log.LogDebug(
             $"[NpcCompass] NPCs={count} (Pinpon={pinponCount}, Conbini={conbiniCount}, Other={otherCount}), " +
+            $"StrangenessMax={strangenessMax:F2} Avg={strangenessAvg:F2}, " +
             $"managerReady={isManagerReady}, " +
             $"sample: id={s.Id} pos=({s.Position.x:F2}, {s.Position.y:F2}, {s.Position.z:F2}) " +
-            $"fwd=({s.Forward.x:F2}, {s.Forward.y:F2}, {s.Forward.z:F2}) type={s.FixedType}");
+            $"fwd=({s.Forward.x:F2}, {s.Forward.y:F2}, {s.Forward.z:F2}) type={s.FixedType} strangeness={s.Strangeness:F2}");
     }
 
     private static bool IsUnityNull(Object obj)

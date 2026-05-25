@@ -11,6 +11,7 @@ A BepInEx plugin that overlays a circular compass on the game screen, showing re
 - Circular compass anchored to the right edge of the screen
 - Camera-relative orientation: what's in front of your camera is at the top of the compass
 - Renders the player and surrounding NPCs as triangles indicating both position and facing direction
+- NPC color reflects current suspicion level (strangeness) — white when calm, deep red when highly alarmed
 - Automatic filtering: NPCs too far away or on a different floor are not drawn
 
 ### Compass elements
@@ -18,8 +19,8 @@ A BepInEx plugin that overlays a circular compass on the game screen, showing re
 | Element | Color | Meaning |
 |---|---|---|
 | Player | Bright green triangle | Always at the center; apex points where the player body faces |
-| Regular NPC | Orange triangle | Walking pedestrians, sitting NPCs, drivers, store clerks, etc. |
-| Pinpon NPC | White triangle | Indoor NPCs that answer when you ring the doorbell |
+| Regular NPC | White → red gradient triangle | All non-doorbell NPCs (pedestrians, sitting NPCs, drivers, store clerks, etc.). Color reflects current strangeness: white = 0 (calm), deep red = 1 (highly alarmed) |
+| Pinpon NPC | Light gray triangle | Indoor NPCs that answer when you ring the doorbell |
 
 The triangle apex always points in the direction the NPC is currently facing.
 
@@ -58,7 +59,7 @@ If the game directory already has a `BepInEx/` folder and other BepInEx plugins 
 Open `BepInEx/LogOutput.log` (or watch the BepInEx console). You should see:
 
 ```
-[Info: NPC Compass] NPC Compass 0.4.0 loaded.
+[Info: NPC Compass] NPC Compass 0.5.0 loaded.
 ```
 
 If this line is missing, the plugin was not loaded — usually because the BepInEx version is wrong (must be **IL2CPP** 6.x) or the dll is in the wrong location.
@@ -104,7 +105,7 @@ Future game updates should continue to work as long as `NpcManager.ExistNpcList`
 
 - Edit `Anchor` / `MarginX` / `MarginY` in the config file
 
-**Too many orange dots, cluttered**
+**Too many NPCs on the compass, cluttered**
 
 - Lower `MaxRange` (default 30, try 15–20)
 - Lower `MaxHeightDiff` (default 3, try 2 on complex terrain)

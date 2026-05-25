@@ -12,8 +12,9 @@ internal static class CompassRenderer
 
     private static readonly Color DiscColor = new Color(0f, 0f, 0f, 0.4f);
     private static readonly Color RingColor = Color.white;
-    private static readonly Color FixedNpcColor = Color.white;
-    private static readonly Color OtherNpcColor = new Color(1f, 0.65f, 0f, 1f);
+    private static readonly Color FixedNpcColor = new Color(0.7f, 0.7f, 0.7f, 1f);
+    private static readonly Color GradientLowColor = new Color(1f, 1f, 1f, 1f);
+    private static readonly Color GradientHighColor = new Color(0.85f, 0.1f, 0.1f, 1f);
     private static readonly Color PlayerColor = new Color(0f, 1f, 0.4f, 1f);
 
     private static Texture2D discTexture;
@@ -254,7 +255,7 @@ internal static class CompassRenderer
 
         Color color = npc.FixedType == NpcFixedType.Pinpon
             ? FixedNpcColor
-            : OtherNpcColor;
+            : Color.Lerp(GradientLowColor, GradientHighColor, npc.Strangeness);
         DrawTriangleAt(new Vector2(screenX, screenY), angleDeg, color);
     }
 
