@@ -30,6 +30,7 @@ public sealed class Plugin : BasePlugin
     internal static ConfigEntry<float> Radius;
     internal static ConfigEntry<float> MaxRange;
     internal static ConfigEntry<float> MaxHeightDiff;
+    internal static ConfigEntry<bool> ShowPinponNpcs;
 
     public override void Load()
     {
@@ -45,6 +46,7 @@ public sealed class Plugin : BasePlugin
         Radius = Config.Bind("Display", "Radius", 100f, "Compass radius in pixels. Change requires game restart to regenerate textures.");
         MaxRange = Config.Bind("Display", "MaxRange", 30f, "World units beyond which NPCs are not drawn on the compass.");
         MaxHeightDiff = Config.Bind("Display", "MaxHeightDiff", 3f, "Hide NPCs whose Y position differs from the player by more than this many world units (filters other floors).");
+        ShowPinponNpcs = Config.Bind("Display", "ShowPinponNpcs", false, "Show 'pinpon' NPCs (white triangles, indoor NPCs that answer the doorbell) on the compass. Hidden by default.");
 
         AddComponent<NpcCompassBehaviour>();
         Log.LogInfo($"{MyPluginInfo.PluginName} {MyPluginInfo.PluginVersion} loaded.");

@@ -19,7 +19,7 @@ A BepInEx plugin that overlays a circular compass on the game screen, showing re
 |---|---|---|
 | Player | Bright green triangle | Always at the center; apex points where the player body faces |
 | Regular NPC | Orange triangle | Walking pedestrians, sitting NPCs, drivers, store clerks, etc. |
-| Pinpon NPC | White triangle | Indoor NPCs that answer when you ring the doorbell |
+| Pinpon NPC | White triangle | Indoor NPCs that answer when you ring the doorbell. **Hidden by default** — enable with `[Display] ShowPinponNpcs` |
 
 The triangle apex always points in the direction the NPC is currently facing.
 
@@ -58,7 +58,7 @@ If the game directory already has a `BepInEx/` folder and other BepInEx plugins 
 Open `BepInEx/LogOutput.log` (or watch the BepInEx console). You should see:
 
 ```
-[Info: NPC Compass] NPC Compass 0.4.0 loaded.
+[Info: NPC Compass] NPC Compass 0.4.1 loaded.
 ```
 
 If this line is missing, the plugin was not loaded — usually because the BepInEx version is wrong (must be **IL2CPP** 6.x) or the dll is in the wrong location.
@@ -81,6 +81,7 @@ After the first launch, the config file is auto-generated. All options:
 | `[Display] Radius` | `100` | Compass radius in pixels. **Requires game restart to take effect** |
 | `[Display] MaxRange` | `30` | NPCs farther than this many world units (≈ meters) are not drawn |
 | `[Display] MaxHeightDiff` | `3` | NPCs whose Y position differs from the player by more than this are not drawn (filters other floors) |
+| `[Display] ShowPinponNpcs` | `false` | Show pinpon NPCs (white triangles, indoor NPCs that answer the doorbell). Hidden by default |
 
 Changes apply on next game launch (except `Radius` which always requires a restart).
 

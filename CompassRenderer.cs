@@ -229,6 +229,11 @@ internal static class CompassRenderer
 
     private static void DrawNpc(NpcSnapshot npc, Vector3 playerPos, Vector3 camFwd, Vector3 camRight, Vector2 center, float pixelsPerUnit, float maxRange)
     {
+        if (npc.FixedType == NpcFixedType.Pinpon && !Plugin.ShowPinponNpcs.Value)
+        {
+            return;
+        }
+
         float heightDiff = Mathf.Abs(npc.Position.y - playerPos.y);
         if (heightDiff > Mathf.Max(0f, Plugin.MaxHeightDiff.Value))
         {

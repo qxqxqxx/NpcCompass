@@ -19,7 +19,7 @@
 |---|---|---|
 | 玩家 | 亮绿色三角形 | 永远在罗盘中心，顶点指向玩家身体朝向 |
 | 普通 NPC | 橙色三角形 | 街上走动、坐着、车内、便利店店员等 |
-| Pinpon NPC | 白色三角形 | 按门铃叫出来的屋内 NPC |
+| Pinpon NPC | 白色三角形 | 按门铃叫出来的屋内 NPC。**默认隐藏**——在配置里把 `[Display] ShowPinponNpcs` 设为 `true` 开启 |
 
 三角形的顶点始终指向该 NPC 当前的面向方向。
 
@@ -58,7 +58,7 @@
 打开 `BepInEx/LogOutput.log`（或观察 BepInEx 控制台），应该看到：
 
 ```
-[Info: NPC Compass] NPC Compass 0.4.0 loaded.
+[Info: NPC Compass] NPC Compass 0.4.1 loaded.
 ```
 
 如果没有这行，说明插件没被加载——通常是 BepInEx 版本不对（必须是 **IL2CPP** 6.x）或 dll 放错位置。
@@ -81,6 +81,7 @@
 | `[Display] Radius` | `100` | 罗盘半径（像素）。**改这一项需要重启游戏才生效** |
 | `[Display] MaxRange` | `30` | 多少世界单位（≈ 米）外的 NPC 不绘制 |
 | `[Display] MaxHeightDiff` | `3` | 玩家与 NPC 的 Y 高度差超过这个值就不绘制，用来过滤楼上楼下的 NPC |
+| `[Display] ShowPinponNpcs` | `false` | 是否显示 pinpon NPC（白色三角形，按门铃叫出来的屋内 NPC）。默认隐藏 |
 
 修改保存后下次进入游戏生效（`Radius` 例外，必须重启）。
 
